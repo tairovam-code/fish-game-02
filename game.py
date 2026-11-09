@@ -71,6 +71,9 @@ def spawn_enemy(avoid=None):
             break
     enemy = {"i": i, "x": x, "y": y, "vx": 0, "vy": 0, "timer": 0}
     new_direction(enemy)
+    # картинка и хитбокс нужны сразу, иначе при появлении новой рыбки будет KeyError
+    enemy["img"] = fishes[i] if enemy["vx"] >= 0 else fishes_flipped[i]
+    enemy["hb"] = hit_rect(enemy["img"], (x, y))
     return enemy
 
 
